@@ -1,5 +1,8 @@
 Tank Cookies
 ===========
+[![GitHub license](https://img.shields.io/github/license/tankerkiller125/cookies?style=flat-square)](https://github.com/tankerkiller125/cookies/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/tankerkiller125/cookies?style=flat-square)](https://github.com/tankerkiller125/cookies/issues)
+[![GitHub forks](https://img.shields.io/github/forks/tankerkiller125/cookies?style=flat-square)](https://github.com/tankerkiller125/cookies/network)
 
 Managing Cookies for PSR-7 Requests and Responses.
 
