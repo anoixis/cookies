@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dflydev\FigCookies;
+namespace Tank\Cookies;
 
-use Dflydev\FigCookies\Modifier\SameSite;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Tank\Cookies\Modifier\SameSite;
 use function time;
 
 class SetCookieTest extends TestCase
@@ -15,16 +15,16 @@ class SetCookieTest extends TestCase
      * @test
      * @dataProvider provideParsesFromSetCookieStringData
      */
-    public function it_parses_from_set_cookie_string(string $cookieString, SetCookie $expectedSetCookie) : void
+    public function it_parses_from_set_cookie_string(string $cookieString, SetCookie $expectedSetCookie): void
     {
         $setCookie = SetCookie::fromSetCookieString($cookieString);
 
         self::assertEquals($expectedSetCookie, $setCookie);
-        self::assertEquals($cookieString, (string) $setCookie);
+        self::assertEquals($cookieString, (string)$setCookie);
     }
 
     /** @return string[][]|SetCookie[][] */
-    public function provideParsesFromSetCookieStringData() : array
+    public function provideParsesFromSetCookieStringData(): array
     {
         return [
             [
@@ -108,37 +108,37 @@ class SetCookieTest extends TestCase
             [
                 'lu=Rg3vHJZnehYLjVg7qi3bZjzg; Domain=.example.com; Path=/; Expires=Tue, 15 Jan 2013 21:47:38 GMT; Max-Age=500; Secure; HttpOnly',
                 SetCookie::create('lu')
-                         ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
-                         ->withExpires(new \DateTime('Tue, 15-Jan-2013 21:47:38 GMT'))
-                         ->withMaxAge(500)
-                         ->withPath('/')
-                         ->withDomain('.example.com')
-                         ->withSecure(true)
-                         ->withHttpOnly(true),
+                    ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
+                    ->withExpires(new \DateTime('Tue, 15-Jan-2013 21:47:38 GMT'))
+                    ->withMaxAge(500)
+                    ->withPath('/')
+                    ->withDomain('.example.com')
+                    ->withSecure(true)
+                    ->withHttpOnly(true),
             ],
             [
                 'lu=Rg3vHJZnehYLjVg7qi3bZjzg; Domain=.example.com; Path=/; Expires=Tue, 15 Jan 2013 21:47:38 GMT; Max-Age=500; Secure; HttpOnly; SameSite=Strict',
                 SetCookie::create('lu')
-                         ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
-                         ->withExpires(new \DateTime('Tue, 15-Jan-2013 21:47:38 GMT'))
-                         ->withMaxAge(500)
-                         ->withPath('/')
-                         ->withDomain('.example.com')
-                         ->withSecure(true)
-                         ->withHttpOnly(true)
-                         ->withSameSite(SameSite::strict()),
+                    ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
+                    ->withExpires(new \DateTime('Tue, 15-Jan-2013 21:47:38 GMT'))
+                    ->withMaxAge(500)
+                    ->withPath('/')
+                    ->withDomain('.example.com')
+                    ->withSecure(true)
+                    ->withHttpOnly(true)
+                    ->withSameSite(SameSite::strict()),
             ],
             [
                 'lu=Rg3vHJZnehYLjVg7qi3bZjzg; Domain=.example.com; Path=/; Expires=Tue, 15 Jan 2013 21:47:38 GMT; Max-Age=500; Secure; HttpOnly; SameSite=Lax',
                 SetCookie::create('lu')
-                         ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
-                         ->withExpires(new \DateTime('Tue, 15-Jan-2013 21:47:38 GMT'))
-                         ->withMaxAge(500)
-                         ->withPath('/')
-                         ->withDomain('.example.com')
-                         ->withSecure(true)
-                         ->withHttpOnly(true)
-                         ->withSameSite(SameSite::lax()),
+                    ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
+                    ->withExpires(new \DateTime('Tue, 15-Jan-2013 21:47:38 GMT'))
+                    ->withMaxAge(500)
+                    ->withPath('/')
+                    ->withDomain('.example.com')
+                    ->withSecure(true)
+                    ->withHttpOnly(true)
+                    ->withSameSite(SameSite::lax()),
             ],
         ];
     }
@@ -146,7 +146,7 @@ class SetCookieTest extends TestCase
     /**
      * @test
      */
-    public function it_expires_cookies() : void
+    public function it_expires_cookies(): void
     {
         $setCookie = SetCookie::createExpired('expire_immediately');
 
@@ -156,7 +156,7 @@ class SetCookieTest extends TestCase
     /**
      * @test
      */
-    public function it_creates_long_living_cookies() : void
+    public function it_creates_long_living_cookies(): void
     {
         $setCookie = SetCookie::createRememberedForever('remember_forever');
 
@@ -165,7 +165,7 @@ class SetCookieTest extends TestCase
     }
 
     /** @test */
-    public function SameSite_modifier_can_be_added_and_removed() : void
+    public function SameSite_modifier_can_be_added_and_removed(): void
     {
         $setCookie = SetCookie::create('foo', 'bar');
 
@@ -183,7 +183,7 @@ class SetCookieTest extends TestCase
     }
 
     /** @test */
-    public function invalid_expires_format_will_be_rejected() : void
+    public function invalid_expires_format_will_be_rejected(): void
     {
         $setCookie = SetCookie::create('foo', 'bar');
 
@@ -194,7 +194,7 @@ class SetCookieTest extends TestCase
     }
 
     /** @test */
-    public function empty_cookie_is_rejected() : void
+    public function empty_cookie_is_rejected(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The provided cookie string "" must have at least one attribute');

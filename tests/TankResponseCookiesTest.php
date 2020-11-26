@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Dflydev\FigCookies;
+namespace Tank\Cookies;
 
 use PHPUnit\Framework\TestCase;
 use function strtoupper;
 
-class FigResponseCookiesTest extends TestCase
+class TankResponseCookiesTest extends TestCase
 {
     /**
      * @test
      */
     public function it_gets_cookies() : void
     {
-        $response = (new FigCookieTestingResponse());
+        $response = (new TankCookieTestingResponse());
 
         $response = $response
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('theme', 'light'))
@@ -24,7 +24,7 @@ class FigResponseCookiesTest extends TestCase
 
         self::assertEquals(
             'ENCRYPTED',
-            FigResponseCookies::get($response, 'sessionToken')->getValue()
+            ResponseCookies::get($response, 'sessionToken')->getValue()
         );
     }
 
@@ -33,7 +33,7 @@ class FigResponseCookiesTest extends TestCase
      */
     public function it_sets_cookies() : void
     {
-        $response = (new FigCookieTestingResponse());
+        $response = (new TankCookieTestingResponse());
 
         $response = $response
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('theme', 'light'))
@@ -41,7 +41,7 @@ class FigResponseCookiesTest extends TestCase
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('hello', 'world'))
         ;
 
-        $response = FigResponseCookies::set($response, SetCookie::create('hello', 'WORLD!'));
+        $response = ResponseCookies::set($response, SetCookie::create('hello', 'WORLD!'));
 
         self::assertEquals(
             'theme=light,sessionToken=ENCRYPTED,hello=WORLD%21',
@@ -54,7 +54,7 @@ class FigResponseCookiesTest extends TestCase
      */
     public function it_modifies_cookies() : void
     {
-        $response = (new FigCookieTestingResponse());
+        $response = (new TankCookieTestingResponse());
 
         $response = $response
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('theme', 'light'))
@@ -62,7 +62,7 @@ class FigResponseCookiesTest extends TestCase
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('hello', 'world'))
         ;
 
-        $response = FigResponseCookies::modify($response, 'hello', function (SetCookie $setCookie) {
+        $response = ResponseCookies::modify($response, 'hello', function (SetCookie $setCookie) {
             return $setCookie->withValue(strtoupper($setCookie->getName()));
         });
 
@@ -77,7 +77,7 @@ class FigResponseCookiesTest extends TestCase
      */
     public function it_removes_cookies() : void
     {
-        $response = (new FigCookieTestingResponse());
+        $response = (new TankCookieTestingResponse());
 
         $response = $response
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('theme', 'light'))
@@ -85,7 +85,7 @@ class FigResponseCookiesTest extends TestCase
             ->withAddedHeader(SetCookies::SET_COOKIE_HEADER, SetCookie::create('hello', 'world'))
         ;
 
-        $response = FigResponseCookies::remove($response, 'sessionToken');
+        $response = ResponseCookies::remove($response, 'sessionToken');
 
         self::assertEquals(
             'theme=light,hello=world',

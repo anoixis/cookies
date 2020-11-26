@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dflydev\FigCookies;
+namespace Tank\Cookies;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 
-class FigCookieTestingRequest implements RequestInterface
+class TankCookieTestingRequest implements RequestInterface
 {
-    use FigCookieTestingMessage;
+    use CookieTestingMessage;
 
     public function getRequestTarget() : void
     {

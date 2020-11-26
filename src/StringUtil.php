@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dflydev\FigCookies;
+namespace Tank\Cookies;
 
 use function array_filter;
 use function array_map;
@@ -13,8 +13,11 @@ use function preg_split;
 
 class StringUtil
 {
-    /** @return string[] */
-    public static function splitOnAttributeDelimiter(string $string) : array
+    /**
+     * @param string $string
+     * @return array
+     */
+    public static function splitOnAttributeDelimiter(string $string): array
     {
         $splitAttributes = preg_split('@\s*[;]\s*@', $string);
 
@@ -23,10 +26,13 @@ class StringUtil
         return array_filter($splitAttributes);
     }
 
-    /** @return string[] */
-    public static function splitCookiePair(string $string) : array
+    /**
+     * @param string $string
+     * @return array
+     */
+    public static function splitCookiePair(string $string): array
     {
-        $pairParts    = explode('=', $string, 2);
+        $pairParts = explode('=', $string, 2);
         $pairParts[1] = $pairParts[1] ?? '';
 
         return array_map('urldecode', $pairParts);

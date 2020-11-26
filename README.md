@@ -1,33 +1,20 @@
-FIG Cookies
+Tank Cookies
 ===========
 
 Managing Cookies for PSR-7 Requests and Responses.
-
-[![Latest Stable Version](https://poser.pugx.org/dflydev/fig-cookies/v/stable)](https://packagist.org/packages/dflydev/fig-cookies)
-[![Total Downloads](https://poser.pugx.org/dflydev/fig-cookies/downloads)](https://packagist.org/packages/dflydev/fig-cookies)
-[![Latest Unstable Version](https://poser.pugx.org/dflydev/fig-cookies/v/unstable)](https://packagist.org/packages/dflydev/fig-cookies)
-[![License](https://poser.pugx.org/dflydev/fig-cookies/license)](https://packagist.org/packages/dflydev/fig-cookies)
-<br>
-[![Build Status](https://travis-ci.org/dflydev/dflydev-fig-cookies.svg?branch=master)](https://travis-ci.org/dflydev/dflydev-fig-cookies)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dflydev/dflydev-fig-cookies/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dflydev/dflydev-fig-cookies/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/dflydev/dflydev-fig-cookies/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dflydev/dflydev-fig-cookies/?branch=master)
-[![Code Climate](https://codeclimate.com/github/dflydev/dflydev-fig-cookies/badges/gpa.svg)](https://codeclimate.com/github/dflydev/dflydev-fig-cookies)
-<br>
-[![Join the chat at https://gitter.im/dflydev/dflydev-fig-cookies](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dflydev/dflydev-fig-cookies?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 
 Installation
 ------------
 
 ```bash
-$> composer require dflydev/fig-cookies
+$> composer require tank/cookies
 ```
 
 
 Concepts
 --------
 
-FIG Cookies tackles two problems, managing **Cookie** *Request* headers and
+tank Cookies tackles two problems, managing **Cookie** *Request* headers and
 managing **Set-Cookie** *Response* headers. It does this by way of introducing
 a `Cookies` class to manage collections of `Cookie` instances and a
 `SetCookies` class to manage collections of `SetCookie` instances.
@@ -37,11 +24,11 @@ Instantiating these collections looks like this:
 ```php
 // Get a collection representing the cookies in the Cookie headers
 // of a PSR-7 Request.
-$cookies = Dflydev\FigCookies\Cookies::fromRequest($request);
+$cookies = Tank\Cookies\Cookies::fromRequest($request);
 
 // Get a collection representing the cookies in the Set-Cookie headers
 // of a PSR-7 Response
-$setCookies = Dflydev\FigCookies\SetCookies::fromResponse($response);
+$setCookies = Tank\Cookies\SetCookies::fromResponse($response);
 ```
 
 After modifying these collections in some way, they are rendered into a
@@ -62,7 +49,7 @@ are all represented as immutable value objects and all mutators will
 return new instances of the original with the requested changes.
 
 While this style of design has many benefits it can become fairly
-verbose very quickly. In order to get around that, FIG Cookies provides
+verbose very quickly. In order to get around that, Tank Cookies provides
 two facades in an attempt to help simply things and make the whole process
 less verbose.
 
@@ -70,15 +57,15 @@ less verbose.
 Basic Usage
 -----------
 
-The easiest way to start working with FIG Cookies is by using the
-`FigRequestCookies` and `FigResponseCookies` classes. They are facades to the
-primitive FIG Cookies classes. Their jobs are to make common cookie related
+The easiest way to start working with Tank Cookies is by using the
+`RequestCookies` and `ResponseCookies` classes. They are facades to the
+primitive Tank Cookies classes. Their jobs are to make common cookie related
 tasks easier and less verbose than working with the primitive classes directly.
 
 There is overhead on creating `Cookies` and `SetCookies` and rebuilding
-requests and responses. Each of the `FigCookies` methods will go through this
+requests and responses. Each of the `Cookies` methods will go through this
 process so be wary of using too many of these calls in the same section of
-code. In some cases it may be better to work with the primitive FIG Cookies
+code. In some cases it may be better to work with the primitive Tank Cookies
 classes directly rather than using the facades.
 
 
@@ -88,12 +75,12 @@ Requests include cookie information in the **Cookie** request header. The
 cookies in this header are represented by the `Cookie` class.
 
 ```php
-use Dflydev\FigCookies\Cookie;
+use Tank\Cookies\Cookie;
 
 $cookie = Cookie::create('theme', 'blue');
 ```
 
-To easily work with request cookies, use the `FigRequestCookies` facade.
+To easily work with request cookies, use the `RequestCookies` facade.
 
 #### Get a Request Cookie
 
@@ -104,10 +91,10 @@ The optional third parameter to `get` sets the value that should be used if a
 cookie does not exist.
 
 ```php
-use Dflydev\FigCookies\FigRequestCookies;
+use Tank\Cookies\RequestCookies;
 
-$cookie = FigRequestCookies::get($request, 'theme');
-$cookie = FigRequestCookies::get($request, 'theme', 'default-theme');
+$cookie = RequestCookies::get($request, 'theme');
+$cookie = RequestCookies::get($request, 'theme', 'default-theme');
 ```
 
 #### Set a Request Cookie
@@ -117,9 +104,9 @@ The `set` method will either add a cookie or replace an existing cookie.
 The `Cookie` primitive is used as the second argument.
 
 ```php
-use Dflydev\FigCookies\FigRequestCookies;
+use Tank\Cookies\RequestCookies;
 
-$request = FigRequestCookies::set($request, Cookie::create('theme', 'blue'));
+$request = RequestCookies::set($request, Cookie::create('theme', 'blue'));
 ```
 
 #### Modify a Request Cookie
@@ -133,7 +120,7 @@ If no cookie by the specified name exists, a new `Cookie` instance with a
 `null` value will be passed to the callable.
 
 ```php
-use Dflydev\FigCookies\FigRequestCookies;
+use Tank\Cookies\RequestCookies;
 
 $modify = function (Cookie $cookie) {
     $value = $cookie->getValue();
@@ -145,7 +132,7 @@ $modify = function (Cookie $cookie) {
     return $cookie->withValue($value);
 }
 
-$request = FigRequestCookies::modify($request, 'theme', $modify);
+$request = RequestCookies::modify($request, 'theme', $modify);
 ```
 
 #### Remove a Request Cookie
@@ -153,13 +140,13 @@ $request = FigRequestCookies::modify($request, 'theme', $modify);
 The `remove` method removes a cookie if it exists.
 
 ```php
-use Dflydev\FigCookies\FigRequestCookies;
+use Tank\Cookies\RequestCookies;
 
-$request = FigRequestCookies::remove($request, 'theme');
+$request = RequestCookies::remove($request, 'theme');
 ```
 
 Note that this does not cause the client to remove the cookie. Take a look at
-`FigResponseCookies::expire` to do that.
+`ResponseCookies::expire` to do that.
 
 ### Response Cookies
 
@@ -167,8 +154,8 @@ Responses include cookie information in the **Set-Cookie** response header. The
 cookies in these headers are represented by the `SetCookie` class.
 
 ```php
-use Dflydev\FigCookies\Modifier\SameSite;
-use Dflydev\FigCookies\SetCookie;
+use Tank\Cookies\Modifier\SameSite;
+use Tank\Cookies\SetCookie;
 
 $setCookie = SetCookie::create('lu')
     ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
@@ -183,7 +170,7 @@ $setCookie = SetCookie::create('lu')
 ;
 ```
 
-To easily work with response cookies, use the `FigResponseCookies` facade.
+To easily work with response cookies, use the `ResponseCookies` facade.
 
 #### Get a Response Cookie
 
@@ -195,10 +182,10 @@ The optional third parameter to `get` sets the value that should be used if a
 cookie does not exist.
 
 ```php
-use Dflydev\FigCookies\FigResponseCookies;
+use Tank\Cookies\ResponseCookies;
 
-$setCookie = FigResponseCookies::get($response, 'theme');
-$setCookie = FigResponseCookies::get($response, 'theme', 'simple');
+$setCookie = ResponseCookies::get($response, 'theme');
+$setCookie = ResponseCookies::get($response, 'theme', 'simple');
 ```
 
 #### Set a Response Cookie
@@ -208,9 +195,9 @@ The `set` method will either add a cookie or replace an existing cookie.
 The `SetCookie` primitive is used as the second argument.
 
 ```php
-use Dflydev\FigCookies\FigResponseCookies;
+use Tank\Cookies\ResponseCookies;
 
-$response = FigResponseCookies::set($response, SetCookie::create('token')
+$response = ResponseCookies::set($response, SetCookie::create('token')
     ->withValue('a9s87dfz978a9')
     ->withDomain('example.com')
     ->withPath('/firewall')
@@ -228,7 +215,7 @@ If no cookie by the specified name exists, a new `SetCookie` instance with a
 `null` value will be passed to the callable.
 
 ```php
-use Dflydev\FigCookies\FigResponseCookies;
+use Tank\Cookies\ResponseCookies;
 
 $modify = function (SetCookie $setCookie) {
     $value = $setCookie->getValue();
@@ -243,7 +230,7 @@ $modify = function (SetCookie $setCookie) {
     ;
 }
 
-$response = FigResponseCookies::modify($response, 'theme', $modify);
+$response = ResponseCookies::modify($response, 'theme', $modify);
 ```
 
 #### Remove a Response Cookie
@@ -251,9 +238,9 @@ $response = FigResponseCookies::modify($response, 'theme', $modify);
 The `remove` method removes a cookie from the response if it exists.
 
 ```php
-use Dflydev\FigCookies\FigResponseCookies;
+use Tank\Cookies\ResponseCookies;
 
-$response = FigResponseCookies::remove($response, 'theme');
+$response = ResponseCookies::remove($response, 'theme');
 ```
 
 #### Expire a Response Cookie
@@ -262,9 +249,9 @@ The `expire` method sets a cookie with an expiry date in the far past. This
 causes the client to remove the cookie.
 
 ```php
-use Dflydev\FigCookies\FigResponseCookies;
+use Tank\Cookies\ResponseCookies;
 
-$response = FigResponseCookies::expire($response, 'session_cookie');
+$response = ResponseCookies::expire($response, 'session_cookie');
 ```
 
 
@@ -283,7 +270,7 @@ PSR-7 client implementation.
 
 No.
 
-It would be possible to build session handling using cookies on top of FIG
+It would be possible to build session handling using cookies on top of Tank
 Cookies but it is out of scope for this package.
 
 
@@ -291,11 +278,11 @@ Cookies but it is out of scope for this package.
 
 No.
 
-FIG Cookies only pays attention to the `Cookie` headers on
+Tank Cookies only pays attention to the `Cookie` headers on
 [PSR-7](https://packagist.org/packages/psr/http-message) Request
 instances. In the case of `ServerRequestInterface` instances, PSR-7
 implementations should be including `$_COOKIES` values in the headers
-so in that case FIG Cookies may be interacting with `$_COOKIES`
+so in that case Tank Cookies may be interacting with `$_COOKIES`
 indirectly.
 
 
@@ -303,13 +290,3 @@ License
 -------
 
 MIT, see LICENSE.
-
-
-Community
----------
-
-Want to get involved? Here are a few ways:
-
- * Find us in the #dflydev IRC channel on irc.freenode.org.
- * Mention [@dflydev](https://twitter.com/dflydev) on Twitter.
- * [![Join the chat at https://gitter.im/dflydev/dflydev-fig-cookies](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dflydev/dflydev-fig-cookies?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

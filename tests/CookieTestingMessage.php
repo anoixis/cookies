@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace Dflydev\FigCookies;
+namespace Tank\Cookies;
 
 use Psr\Http\Message\StreamInterface;
 use function implode;
 
-trait FigCookieTestingMessage
+trait CookieTestingMessage
 {
     /** @var string[] */
     private $headers = [];
 
     /** {@inheritDoc} */
-    public function getProtocolVersion() : void
+    public function getProtocolVersion(): void
     {
         throw new \RuntimeException('This method has not been implemented.');
     }
 
     /** {@inheritDoc} */
-    public function withProtocolVersion($version) : void
+    public function withProtocolVersion($version): void
     {
         throw new \RuntimeException('This method has not been implemented.');
     }
 
     /** {@inheritDoc} */
-    public function hasHeader($name) : void
+    public function hasHeader($name): void
     {
         throw new \RuntimeException('This method has not been implemented.');
     }
@@ -45,7 +45,7 @@ trait FigCookieTestingMessage
     {
         $clone = clone($this);
 
-        if (! isset($clone->headers[$name])) {
+        if (!isset($clone->headers[$name])) {
             $clone->headers[$name] = [];
         }
 
@@ -67,19 +67,19 @@ trait FigCookieTestingMessage
     }
 
     /** {@inheritDoc} */
-    public function getBody() : void
+    public function getBody(): void
     {
         throw new \RuntimeException('This method has not been implemented.');
     }
 
     /** {@inheritDoc} */
-    public function withBody(StreamInterface $body) : void
+    public function withBody(StreamInterface $body): void
     {
         throw new \RuntimeException('This method has not been implemented.');
     }
 
     /** {@inheritDoc} */
-    public function getHeaders() : void
+    public function getHeaders(): void
     {
         throw new \RuntimeException('This method has not been implemented.');
     }
@@ -87,7 +87,7 @@ trait FigCookieTestingMessage
     /** {@inheritDoc} */
     public function getHeader($name)
     {
-        if (! isset($this->headers[$name])) {
+        if (!isset($this->headers[$name])) {
             return [];
         }
 
@@ -103,7 +103,7 @@ trait FigCookieTestingMessage
     /** {@inheritDoc} */
     public function getHeaderLines($name)
     {
-        if (! isset($this->headers[$name])) {
+        if (!isset($this->headers[$name])) {
             return [];
         }
 

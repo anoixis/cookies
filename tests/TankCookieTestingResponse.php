@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Dflydev\FigCookies;
+namespace Tank\Cookies;
 
 use Psr\Http\Message\ResponseInterface;
 
-class FigCookieTestingResponse implements ResponseInterface
+class TankCookieTestingResponse implements ResponseInterface
 {
-    use FigCookieTestingMessage;
+    use CookieTestingMessage;
 
     public function getStatusCode() : void
     {
