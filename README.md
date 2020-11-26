@@ -3,6 +3,8 @@ Tank Cookies
 
 Managing Cookies for PSR-7 Requests and Responses.
 
+This is a maintained and working fork of [dflydev/dflydev-fig-cookies](https://github.com/dflydev/dflydev-fig-cookies) since that library seems to have been abandoned.
+
 Installation
 ------------
 
