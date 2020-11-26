@@ -11,6 +11,7 @@ class TankRequestCookiesTest extends TestCase
 {
     /**
      * @test
+     * 
      */
     public function it_gets_cookies() : void
     {
@@ -26,6 +27,7 @@ class TankRequestCookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_sets_cookies() : void
     {
@@ -43,6 +45,7 @@ class TankRequestCookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_modifies_cookies() : void
     {
@@ -62,6 +65,7 @@ class TankRequestCookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_removes_cookies() : void
     {

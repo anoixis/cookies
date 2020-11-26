@@ -10,6 +10,10 @@ use function count;
 class CookieTest extends TestCase
 {
     /**
+     * @param string $cookieString
+     * @param string $expectedName
+     * @param string|null $expectedValue
+     *
      * @test
      * @dataProvider provideParsesOneFromCookieStringData
      */
@@ -28,6 +32,7 @@ class CookieTest extends TestCase
     }
 
     /**
+     * @param string $cookieString
      * @param string[] $expectedNameValuePairs
      *
      * @test

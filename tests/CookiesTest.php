@@ -20,6 +20,7 @@ class CookiesTest extends TestCase
      * @param Cookie[] $expectedCookies
      *
      * @test
+     * 
      * @dataProvider provideCookieStringAndExpectedCookiesData
      */
     public function it_creates_from_request(string $cookieString, array $expectedCookies): void
@@ -38,6 +39,7 @@ class CookiesTest extends TestCase
      * @param Cookie[] $expectedCookies
      *
      * @test
+     * 
      * @dataProvider provideCookieStringAndExpectedCookiesData
      */
     public function it_creates_from_cookie_string(string $cookieString, array $expectedCookies): void
@@ -52,6 +54,7 @@ class CookiesTest extends TestCase
      * @param Cookie[] $expectedCookies
      *
      * @test
+     * 
      * @dataProvider provideCookieStringAndExpectedCookiesData
      */
     public function it_knows_which_cookies_are_available(string $cookieString, array $expectedCookies): void
@@ -66,11 +69,13 @@ class CookiesTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider provideGetsCookieByNameData
      * @param string $cookieString
      * @param string $cookieName
      * @param Cookie $expectedCookie
+     *
+     * @test
+     * 
+     * @dataProvider provideGetsCookieByNameData
      */
     public function it_gets_cookie_by_name(string $cookieString, string $cookieName, Cookie $expectedCookie): void
     {
@@ -81,6 +86,7 @@ class CookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_sets_overrides_and_removes_cookie(): void
     {
@@ -101,6 +107,7 @@ class CookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_renders_new_cookies_into_empty_cookie_header(): void
     {
@@ -118,6 +125,7 @@ class CookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_renders_added_and_removed_cookies_header(): void
     {
@@ -136,6 +144,7 @@ class CookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_gets_cookie_value_from_request(): void
     {
@@ -151,6 +160,7 @@ class CookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_gets_and_updates_cookie_value_on_request(): void
     {

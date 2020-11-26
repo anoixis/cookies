@@ -20,6 +20,7 @@ class SetCookiesTest extends TestCase
      * @param SetCookie[] $expectedSetCookies
      *
      * @test
+     * 
      * @dataProvider provideSetCookieStringsAndExpectedSetCookiesData
      */
     public function it_creates_from_response(array $setCookieStrings, array $expectedSetCookies): void
@@ -38,6 +39,7 @@ class SetCookiesTest extends TestCase
      * @param SetCookie[] $expectedSetCookies
      *
      * @test
+     * 
      * @dataProvider provideSetCookieStringsAndExpectedSetCookiesData
      */
     public function it_creates_from_set_cookie_strings(array $setCookieStrings, array $expectedSetCookies): void
@@ -52,6 +54,7 @@ class SetCookiesTest extends TestCase
      * @param SetCookie[] $expectedSetCookies
      *
      * @test
+     * 
      * @dataProvider provideSetCookieStringsAndExpectedSetCookiesData
      */
     public function it_knows_which_set_cookies_are_available(array $setCookieStrings, array $expectedSetCookies): void
@@ -67,10 +70,11 @@ class SetCookiesTest extends TestCase
 
     /**
      * @param string[] $setCookieStrings
-     *
      * @param string $setCookieName
      * @param SetCookie|null $expectedSetCookie
+     *
      * @test
+     * 
      * @dataProvider provideGetsSetCookieByNameData
      */
     public function it_gets_set_cookie_by_name(array $setCookieStrings, string $setCookieName, ?SetCookie $expectedSetCookie = null): void
@@ -82,6 +86,7 @@ class SetCookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_renders_added_and_removed_set_cookies_header(): void
     {
@@ -103,6 +108,7 @@ class SetCookiesTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_gets_and_updates_set_cookie_value_on_request(): void
     {

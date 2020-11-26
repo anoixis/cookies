@@ -13,6 +13,7 @@ class SetCookieTest extends TestCase
 {
     /**
      * @test
+     * 
      * @dataProvider provideParsesFromSetCookieStringData
      */
     public function it_parses_from_set_cookie_string(string $cookieString, SetCookie $expectedSetCookie): void
@@ -145,6 +146,7 @@ class SetCookieTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_expires_cookies(): void
     {
@@ -155,6 +157,7 @@ class SetCookieTest extends TestCase
 
     /**
      * @test
+     * 
      */
     public function it_creates_long_living_cookies(): void
     {
@@ -164,7 +167,10 @@ class SetCookieTest extends TestCase
         self::assertGreaterThan($fourYearsFromNow, $setCookie->getExpires());
     }
 
-    /** @test */
+    /**
+     * @test
+     * 
+     */
     public function SameSite_modifier_can_be_added_and_removed(): void
     {
         $setCookie = SetCookie::create('foo', 'bar');
@@ -182,7 +188,10 @@ class SetCookieTest extends TestCase
         self::assertSame('foo=bar', $setCookie->__toString());
     }
 
-    /** @test */
+    /**
+     * @test
+     * 
+     */
     public function invalid_expires_format_will_be_rejected(): void
     {
         $setCookie = SetCookie::create('foo', 'bar');
@@ -193,7 +202,10 @@ class SetCookieTest extends TestCase
         $setCookie->withExpires('potato');
     }
 
-    /** @test */
+    /**
+     * @test
+     * 
+     */
     public function empty_cookie_is_rejected(): void
     {
         $this->expectException(InvalidArgumentException::class);
