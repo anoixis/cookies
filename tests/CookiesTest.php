@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tank\Cookies;
+namespace Anoixis\Cookies;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;

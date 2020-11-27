@@ -1,12 +1,12 @@
 {
-    "name": "tank/cookies",
+    "name": "anoixis/cookies",
     "description": "Cookies for PSR-7 HTTP Message Interface.",
     "license": "MIT",
     "keywords": ["psr7", "psr-7", "cookies"],
     "authors": [
         {
             "name": "Matthew Kilgore",
-            "email": "matthew@kilgore.dev"
+            "email": "matthew@anoixis.dev"
         }
     ],
     "require": {
@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Tank\\Cookies\\": "src/"
+            "Anoixis\\Cookies\\": "src/"
         }
     },
     "require-dev": {
@@ -25,7 +25,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tank\\Cookies\\": "tests/"
+            "Anoixis\\Cookies\\": "tests/"
         }
     },
     "extra": {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tank\Cookies;
+namespace Anoixis\Cookies;
 
 use DateTime;
 use DateTimeInterface;
 use InvalidArgumentException;
-use Tank\Cookies\Modifier\SameSite;
+use Anoixis\Cookies\Modifier\SameSite;
 use function array_shift;
 use function count;
 use function explode;

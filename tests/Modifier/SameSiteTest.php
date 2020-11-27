@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tank\Cookies\Modifier;
+namespace Anoixis\Cookies\Modifier;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Tank\Cookies\Modifier\SameSite
+ * @covers \Anoixis\Cookies\Modifier\SameSite
  */
 final class SameSiteTest extends TestCase
 {

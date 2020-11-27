@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tank\Cookies;
+namespace Anoixis\Cookies;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Tank\Cookies\Modifier\SameSite;
+use Anoixis\Cookies\Modifier\SameSite;
 use function time;
 
 class SetCookieTest extends TestCase

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tank\Cookies\Modifier;
+namespace Anoixis\Cookies\Modifier;
 
 use InvalidArgumentException;
 use function sprintf;

@@ -1,8 +1,8 @@
-Tank Cookies
+Anoixis Cookies
 ===========
-[![GitHub license](https://img.shields.io/github/license/tankerkiller125/cookies?style=flat-square)](https://github.com/tankerkiller125/cookies/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/tankerkiller125/cookies?style=flat-square)](https://github.com/tankerkiller125/cookies/issues)
-[![GitHub forks](https://img.shields.io/github/forks/tankerkiller125/cookies?style=flat-square)](https://github.com/tankerkiller125/cookies/network)
+[![GitHub license](https://img.shields.io/github/license/anoixis/cookies?style=flat-square)](https://github.com/anoixis/cookies/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/anoixis/cookies?style=flat-square)](https://github.com/anoixis/cookies/issues)
+[![GitHub forks](https://img.shields.io/github/forks/anoixis/cookies?style=flat-square)](https://github.com/anoixis/cookies/network)
 
 Managing Cookies for PSR-7 Requests and Responses.
 
@@ -29,11 +29,11 @@ Instantiating these collections looks like this:
 ```php
 // Get a collection representing the cookies in the Cookie headers
 // of a PSR-7 Request.
-$cookies = Tank\Cookies\Cookies::fromRequest($request);
+$cookies = Anoixis\Cookies\Cookies::fromRequest($request);
 
 // Get a collection representing the cookies in the Set-Cookie headers
 // of a PSR-7 Response
-$setCookies = Tank\Cookies\SetCookies::fromResponse($response);
+$setCookies = Anoixis\Cookies\SetCookies::fromResponse($response);
 ```
 
 After modifying these collections in some way, they are rendered into a
@@ -80,7 +80,7 @@ Requests include cookie information in the **Cookie** request header. The
 cookies in this header are represented by the `Cookie` class.
 
 ```php
-use Tank\Cookies\Cookie;
+use Anoixis\Cookies\Cookie;
 
 $cookie = Cookie::create('theme', 'blue');
 ```
@@ -96,7 +96,7 @@ The optional third parameter to `get` sets the value that should be used if a
 cookie does not exist.
 
 ```php
-use Tank\Cookies\RequestCookies;
+use Anoixis\Cookies\RequestCookies;
 
 $cookie = RequestCookies::get($request, 'theme');
 $cookie = RequestCookies::get($request, 'theme', 'default-theme');
@@ -109,7 +109,7 @@ The `set` method will either add a cookie or replace an existing cookie.
 The `Cookie` primitive is used as the second argument.
 
 ```php
-use Tank\Cookies\RequestCookies;
+use Anoixis\Cookies\RequestCookies;
 
 $request = RequestCookies::set($request, Cookie::create('theme', 'blue'));
 ```
@@ -125,7 +125,7 @@ If no cookie by the specified name exists, a new `Cookie` instance with a
 `null` value will be passed to the callable.
 
 ```php
-use Tank\Cookies\RequestCookies;
+use Anoixis\Cookies\RequestCookies;
 
 $modify = function (Cookie $cookie) {
     $value = $cookie->getValue();
@@ -145,7 +145,7 @@ $request = RequestCookies::modify($request, 'theme', $modify);
 The `remove` method removes a cookie if it exists.
 
 ```php
-use Tank\Cookies\RequestCookies;
+use Anoixis\Cookies\RequestCookies;
 
 $request = RequestCookies::remove($request, 'theme');
 ```
@@ -159,8 +159,8 @@ Responses include cookie information in the **Set-Cookie** response header. The
 cookies in these headers are represented by the `SetCookie` class.
 
 ```php
-use Tank\Cookies\Modifier\SameSite;
-use Tank\Cookies\SetCookie;
+use Anoixis\Cookies\Modifier\SameSite;
+use Anoixis\Cookies\SetCookie;
 
 $setCookie = SetCookie::create('lu')
     ->withValue('Rg3vHJZnehYLjVg7qi3bZjzg')
@@ -187,7 +187,7 @@ The optional third parameter to `get` sets the value that should be used if a
 cookie does not exist.
 
 ```php
-use Tank\Cookies\ResponseCookies;
+use Anoixis\Cookies\ResponseCookies;
 
 $setCookie = ResponseCookies::get($response, 'theme');
 $setCookie = ResponseCookies::get($response, 'theme', 'simple');
@@ -200,7 +200,7 @@ The `set` method will either add a cookie or replace an existing cookie.
 The `SetCookie` primitive is used as the second argument.
 
 ```php
-use Tank\Cookies\ResponseCookies;
+use Anoixis\Cookies\ResponseCookies;
 
 $response = ResponseCookies::set($response, SetCookie::create('token')
     ->withValue('a9s87dfz978a9')
@@ -220,7 +220,7 @@ If no cookie by the specified name exists, a new `SetCookie` instance with a
 `null` value will be passed to the callable.
 
 ```php
-use Tank\Cookies\ResponseCookies;
+use Anoixis\Cookies\ResponseCookies;
 
 $modify = function (SetCookie $setCookie) {
     $value = $setCookie->getValue();
@@ -243,7 +243,7 @@ $response = ResponseCookies::modify($response, 'theme', $modify);
 The `remove` method removes a cookie from the response if it exists.
 
 ```php
-use Tank\Cookies\ResponseCookies;
+use Anoixis\Cookies\ResponseCookies;
 
 $response = ResponseCookies::remove($response, 'theme');
 ```
@@ -254,7 +254,7 @@ The `expire` method sets a cookie with an expiry date in the far past. This
 causes the client to remove the cookie.
 
 ```php
-use Tank\Cookies\ResponseCookies;
+use Anoixis\Cookies\ResponseCookies;
 
 $response = ResponseCookies::expire($response, 'session_cookie');
 ```
