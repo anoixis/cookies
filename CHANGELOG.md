@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.1.0 - 2020-11-27
+
+### Updated
+- PHPUnit configuration
+- Switched to Github Actions
+
+### Replaced
+- All namespaces have been changed to `Anoixis\Cookies`
+
+### Removed
+- Support for PHP 7.2
+
 ## 2.0.0 - 2018-07-11
 
 ### Added
