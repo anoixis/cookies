@@ -8,15 +8,20 @@ jobs:
 
     strategy:
       matrix:
-        php: [7.3, 7.4]
+        php: [7.3, 7.4, 8.0, 'latest']
 
     name: 'PHP ${{ matrix.php }}'
 
     steps:
       - uses: actions/checkout@master
 
-      - name: Select PHP version
-        run: sudo update-alternatives --set php $(which php${{ matrix.php }})
+      - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
+            coverage: xdebug
+            tools: php-cs-fixer, phpunit, composer:v2
+            update: true
 
       - name: Install Composer dependencies
         run: composer install
