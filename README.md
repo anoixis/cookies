@@ -12,7 +12,7 @@ Installation
 ------------
 
 ```bash
-$> composer require tank/cookies
+$> composer require anoixis/cookies
 ```
 
 
